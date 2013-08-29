@@ -102,6 +102,7 @@ passport.use(new GoogleStrategy({
     function(accessToken, refreshToken, profile, done) {
       User.findOne({ 'google.id': profile.id }, function (err, user) {
         if (!user) {
+            console.log('new google profile : %j', profile);
           user = new User({
             name: profile.displayName,
             email: profile.emails[0].value,

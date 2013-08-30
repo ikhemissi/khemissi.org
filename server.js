@@ -82,18 +82,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-passport.use(new GoogleStrategy({
-    returnURL: 'http://iheb.khemissi.org/auth/google/return',
-    realm: 'http://iheb.khemissi.org/'
-  },
-  function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier }, function(err, user) {
-      done(err, user);
-    });
-  }
-));
-
-
 // use google strategy
 passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,

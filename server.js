@@ -118,14 +118,15 @@ app.get("/", function(request, response) {
 // Redirect the user to Google for authentication.  When complete, Google
 // will redirect the user back to the application at
 //     /auth/google/return
-app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google', 
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                                            'https://www.googleapis.com/auth/userinfo.email'] }));
 
 // Google will redirect the user to this URL after authentication.  Finish
 // the process by verifying the assertion.  If valid, the user will be
 // logged in.  Otherwise, authentication has failed.
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
-                                            'https://www.googleapis.com/auth/userinfo.email'] }));
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) { res.redirect('/'); });
 
 app.get("*", function(request, response) {
   response.end("404!");

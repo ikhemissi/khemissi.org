@@ -111,8 +111,8 @@ passport.use(new GoogleStrategy({
 ));
 
 
-app.get("/", function(request, response) {
-  response.render('index')
+app.get("/", function(req, res) {
+  res.render('index', {user: req.user})
 });
 
 // Redirect the user to Google for authentication.  When complete, Google
@@ -128,8 +128,8 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) { res.redirect('/'); });
 
-app.get("*", function(request, response) {
-  response.end("404!");
+app.get("*", function(req, res) {
+  res.end("404!");
 });
 
 http.createServer(app).listen(process.env.PORT, process.env.IP);

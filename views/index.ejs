@@ -63,7 +63,15 @@
           <li><a href="#contact"><span class="glyphicon glyphicon-phone-alt"></span> Contact</a></li>
           <li><button type="button" class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-paperclip"></span> CV</button></li>
         </ul>
-        <ul class="nav navbar-nav pull-right"><li><a href="/auth/google" class="btn btn-default navbar-btn">Sign in</a></li></ul>
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <% if (!user) { %> 
+                    <a href="/auth/google" class="btn btn-default navbar-btn">Sign in</a>
+                <% } else { %> 
+                    <h2><%= user.name %></h2> 
+                <% } %>
+            </li>
+        </ul>
     </nav>
 
 

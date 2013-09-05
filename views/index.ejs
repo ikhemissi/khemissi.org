@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">    
 
+    <!-- Effeckt.css (custom) -->
+    <link href="css/effeckt.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- link href="css/style.css" rel="stylesheet" -->
     
     <!-- Modernizr -->
     <script src="js/modernizr.custom.js"></script>
@@ -22,7 +25,7 @@
 
   <body>
   
-    <section id="main" class="current">
+    <section id="main" class="current" data-effeckt-transition-page="main">
     
         <div>
             <h1>Iheb KHEMISSI <span>Web developer</span></h1>
@@ -31,16 +34,16 @@
           
     </section>
       
-    <section id="projects">
-          
+    <section id="projects" data-effeckt-transition-page="projects">
+          PROJECTS
     </section>
 
-    <section id="playground">
-          
+    <section id="playground" data-effeckt-transition-page="playground">
+          PLAYGROUND
     </section>
     
-    <section id="contact">
-          
+    <section id="contact" data-effeckt-transition-page="contact">
+          CONTACT
     </section>
     
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -58,17 +61,17 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#projects"><span class="glyphicon glyphicon-list"></span> Projects</a></li>
-          <li><a href="#playground"><span class="glyphicon glyphicon-star"></span> Playground</a></li>
-          <li><a href="#contact"><span class="glyphicon glyphicon-phone-alt"></span> Contact</a></li>
-          <li><button type="button" class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-paperclip"></span> CV</button></li>
+          <li><span class="glyphicon glyphicon-list effeckt-page-transition-button" data-effeckt-transition-page="projects" data-effeckt-transition-out="slide-to-right" data-effeckt-transition-in="slide-from-left"></span> Projects</li>
+          <li><span class="glyphicon glyphicon-star effeckt-page-transition-button" data-effeckt-transition-page="playground" data-effeckt-transition-out="slide-to-right" data-effeckt-transition-in="slide-from-left"></span> Playground</li>
+          <li><span class="glyphicon glyphicon-phone-alt  effeckt-page-transition-button" data-effeckt-transition-page="contact" data-effeckt-transition-out="slide-to-right" data-effeckt-transition-in="slide-from-left"></span> Contact</li>
+          <li><button type="button" class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-paperclip"></span> About</button></li>
         </ul>
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav navbar-right">
             <li>
                 <% if (!user) { %> 
                     <a href="/auth/google" class="btn btn-default navbar-btn">Sign in</a>
                 <% } else { %> 
-                    <h2><%= user.name %></h2> 
+                    <h3><%= user.name %></h3> 
                 <% } %>
             </li>
         </ul>
@@ -78,22 +81,28 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <!-- Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- Effeckt.css scripts (custom) -->
+    <script src="js/effeckt/off-screen-nav.js"></script>
+    <script src="js/effeckt/page-transitions.js"></script>
+    
+    <!--
     <script type="text/javascript">
         $(document).ready(function(){
             var $sections = $('section');
             
             $('a[href^="#"]').on('click',function (e) {
         	    e.preventDefault();
-        
+                var $current = $sections.filter('section.current');
         	    var target = this.hash,
         	    $target = $(target);
-                $('section').removeClass('current');
+                $current.removeClass('current');
                 $target.addClass('current');
         	    $('html, body').stop().animate({
         	        'scrollTop': $target.offset().top
@@ -103,5 +112,6 @@
         	});
         });
     </script>
+    -->
   </body>
 </html>
